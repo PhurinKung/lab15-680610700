@@ -21,16 +21,10 @@ import {
 } from "@/components/ui/combobox"
 
 import { courses, currentStudent } from "@/lib/mock-data";
-import type { Course } from "@/lib/types";
-
-type RegisterData = {
-  studentId: string,
-  courseId: string;
-  enrolledAt: string;
-};
+import type { Course, Enrollment } from "@/lib/types";
 
 type RegisterDialogProps = {
-  onRegister: (data: RegisterData ) => void;
+  onRegister: (data: Enrollment ) => void;
   registeredCourses: string[]; // Receive this from parent
 };
 

@@ -1,19 +1,14 @@
 import { CourseCard } from "@/components/course-card";
 import { useState } from "react";
-import { RegisterDialog } from "@/components/register-dialog2";
+import { RegisterDialog } from "@/components/register-dialog";
 import { courses, currentStudent, enrollments as initialEnrollments} from "@/lib/mock-data";
-
-type RegisterData = {
-  studentId: string,
-  courseId: string;
-  enrolledAt: string;
-};
+import type { Enrollment } from "@/lib/types";
 
 export default function Enrollent() {
   const [enrollments, setEnrollments] = useState(initialEnrollments);
   const [studentCourses, setStudentCourses] = useState(currentStudent.courses || []);
 
-  const handleRegister = (data: RegisterData) => {
+  const handleRegister = (data: Enrollment) => {
     // setEnrollments((prev) => [
     //   ...prev,
     //   data,
@@ -43,7 +38,7 @@ export default function Enrollent() {
       <div className="flex flex-col gap-4">
         {courses.map((course) => {
           const enrollment = enrollments.find(
-            (entry) => entry.courseId === course.courseId
+            (e) => e.courseId === course.courseId && e.studentId === currentStudent.studentId
           );
 
           return (
