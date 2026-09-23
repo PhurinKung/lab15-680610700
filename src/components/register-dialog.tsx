@@ -30,7 +30,7 @@ type RegisterDialogProps = {
 
 export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialogProps) {
   const [open, setOpen] = useState(false); // true = แสดง Dialog
-  const [courseId, setCourseId] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault(); // ไม่ให้หน้าเว็บ reload
@@ -46,11 +46,11 @@ export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialog
     
     onRegister({
       studentId: currentStudent.studentId,
-      courseId: courseId,
+      courseId: selectedCourse!.courseId,
       enrolledAt: fullEnrollmentTime,
     });
     // console.log(fullEnrollmentTime);
-    setCourseId(""); // เคลียร์ฟอร์ม
+    setSelectedCourse(null); // เคลียร์ฟอร์ม
     setOpen(false); // ปิด Dialog
   }
 
@@ -79,18 +79,18 @@ export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialog
             <div className="grid min-w-0 gap-2">
               <Label htmlFor="Course">วิชา</Label>
               <Combobox 
-                  value={courseId} 
-                  onValueChange={(value) => setCourseId(value || "")}
+                  value={selectedCourse} 
+                  onValueChange={(value) => setSelectedCourse(value)}
                   items={availableCourses}
-                  // itemToStringValue={(c: Course) => `${c.courseId} - ${c.courseTitle}`}
+                  itemToStringValue={(c: Course) => `${c.courseId} - ${c.courseTitle}`}
                 >
                 <ComboboxInput placeholder="เลือกวิชา" />
                 <ComboboxContent>
                   <ComboboxList>
                     {availableCourses.map((c) =>(
-                    <ComboboxItem key={c.courseId} value={c.courseId} >
+                    <ComboboxItem key={c.courseId} value={c}>
                       {c.courseId} - {c.courseTitle}
-                     </ComboboxItem> 
+                    </ComboboxItem>
                     ))}
                   </ComboboxList>
                 </ComboboxContent>
@@ -115,7 +115,7 @@ export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialog
           </div>
 
           <DialogFooter>
-            <Button type="submit" disabled={!courseId} >ยืนยันการลงทะเบียน</Button>
+            <Button type="submit" disabled={!selectedCourse} >ยืนยันการลงทะเบียน</Button>
           </DialogFooter>
         </form>
       </DialogContent>
