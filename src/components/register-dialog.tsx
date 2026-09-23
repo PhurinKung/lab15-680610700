@@ -82,7 +82,7 @@ export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialog
                   value={selectedCourse} 
                   onValueChange={(value) => setSelectedCourse(value)}
                   items={availableCourses}
-                  itemToStringValue={(c: Course) => `${c.courseId} - ${c.courseTitle}`}
+                  itemToStringLabel={(c: Course) => `${c.courseId} - ${c.courseTitle}`}
                 >
                 <ComboboxInput placeholder="เลือกวิชา" />
                 <ComboboxContent>
