@@ -8,6 +8,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { currentStudent } from "@/lib/mock-data";
 
 export default function RootLayout() {
   return (
@@ -27,7 +28,7 @@ export default function RootLayout() {
         </main>
         <Separator/>
         <footer className="border-t p-4 text-center text-xs text-muted-foreground">
-          จัดทำโดย Phichamon Kaewboot รหัสนักศึกษา 680610700
+          จัดทำโดย {currentStudent.firstName} {currentStudent.lastName} รหัสนักศึกษา {currentStudent.studentId}
         </footer>
       </SidebarInset>
     </SidebarProvider>

@@ -8,7 +8,6 @@ import { Link} from "react-router";
 import { currentStudent } from "@/lib/mock-data";
 
 export default function HomePage() {
-  const fullName = `${currentStudent.firstName} ${currentStudent.lastName}`;
   return (
   <div className="mx-auto max-w-xl space-y-4">
     <Card>
@@ -22,7 +21,7 @@ export default function HomePage() {
       </CardContent>
     </Card>
     <p className="text-center text-xs text-muted-foreground">
-      จัดทำโดย {fullName} รหัสนักศึกษา {currentStudent.studentId}
+      จัดทำโดย {currentStudent.firstName} {currentStudent.lastName} รหัสนักศึกษา {currentStudent.studentId}
     </p>
   </div>
   );
