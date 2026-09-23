@@ -20,7 +20,7 @@ import {
   ComboboxList,
 } from "@/components/ui/combobox"
 
-import { courses, currentStudent, enrollments as initialEnrollments } from "@/lib/mock-data";
+import { courses, currentStudent } from "@/lib/mock-data";
 import type { Course } from "@/lib/types";
 
 type RegisterData = {
@@ -29,17 +29,17 @@ type RegisterData = {
   enrolledAt: string;
 };
 
-export function RegisterDialog() {
+type RegisterDialogProps = {
+  onRegister: (data: RegisterData ) => void;
+  registeredCourses: string[]; // Receive this from parent
+};
+
+export function RegisterDialog({ onRegister, registeredCourses }: RegisterDialogProps) {
   const [open, setOpen] = useState(false); // true = แสดง Dialog
   const [courseId, setCourseId] = useState("");
 
-  const [enrollments, setEnrollments] = useState(initialEnrollments);
-  const [studentCourses, setStudentCourses] = useState(currentStudent.courses || []);
-
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault(); // ไม่ให้หน้าเว็บ reload
-    
-    currentStudent.courses?.push(courseId);
     
     const formData = new FormData(e.currentTarget);
     const submittedTime = formData.get("time"); 
@@ -48,14 +48,13 @@ export function RegisterDialog() {
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
-    
-    // Stitch it together using the submittedTime
     const fullEnrollmentTime = `${year}-${month}-${day}T${submittedTime}:00`;
-    enrollments.push({
+    
+    onRegister({
       studentId: currentStudent.studentId,
       courseId: courseId,
       enrolledAt: fullEnrollmentTime,
-    })
+    });
     // console.log(fullEnrollmentTime);
     setCourseId(""); // เคลียร์ฟอร์ม
     setOpen(false); // ปิด Dialog
@@ -64,7 +63,7 @@ export function RegisterDialog() {
   const currentTime = new Date().toTimeString().slice(0, 5); //so only get 23:45 the format html 
   
   const availableCourses = courses.filter(
-    (course) => !(currentStudent.courses || []).includes(course.courseId)
+    (course) => !registeredCourses.includes(course.courseId)
   );
 
   return (
