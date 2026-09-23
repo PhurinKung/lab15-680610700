@@ -28,7 +28,7 @@ export default function RootLayout() {
         </main>
         <Separator/>
         <footer className="border-t p-4 text-center text-xs text-muted-foreground">
-          จัดทำโดย {currentStudent.firstName} {currentStudent.lastName} รหัสนักศึกษา {currentStudent.studentId}
+          จัดทำโดย พิชามญชุ์ แก้วบุตร รหัสนักศึกษา 680610700
         </footer>
       </SidebarInset>
     </SidebarProvider>
