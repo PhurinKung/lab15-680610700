@@ -1,6 +1,6 @@
 import { CourseCard } from "@/components/course-card";
 import { useState } from "react";
-import { RegisterDialog } from "@/components/register-dialog";
+import { RegisterDialog } from "@/components/register-dialog2";
 import { courses, currentStudent, enrollments as initialEnrollments} from "@/lib/mock-data";
 import type { Enrollment } from "@/lib/types";
 
