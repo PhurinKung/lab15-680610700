@@ -26,7 +26,7 @@ import type { Course } from "@/lib/types";
 type RegisterData = {
   studentId: string,
   courseId: string;
-  time: string;
+  enrolledAt: string;
 };
 
 export function RegisterDialog() {
