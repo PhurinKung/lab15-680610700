@@ -21,6 +21,13 @@ export const students: Student[] = [
     program: "ISNE",
     courses: ["269101", "261497"],
   },
+  {
+    studentId: "680610700",
+    firstName: "Phichamon",
+    lastName: "Kaewboot",
+    program: "CPE",
+    courses: [],
+  },
 ];
 
 export const courses: Course[] = [
@@ -73,7 +80,7 @@ export const currentStudent = students.find(
 
 // ข้อมูลส่วนแสดงสถานะผู้ใช้ที่ Sidebar (ข้อ 5 ของโจทย์) — แก้เป็นชื่อเล่นและรูปของตัวเอง
 export const currentUser = {
-  nickname: "Cillian",
+  nickname: "Phurin",
   role: "STUDENT" as "STUDENT" | "ADMIN",
-  avatar: "/profile.svg", // วางรูปไว้ที่ public/
+  avatar: "public/pompom.jpg", // วางรูปไว้ที่ public/
 };

@@ -25,7 +25,13 @@ export default function RootLayout() {
         <main className="flex-1 p-4">
           <Outlet />
         </main>
+        <Separator/>
+        <footer className="border-t p-4 text-center text-xs text-muted-foreground">
+          จัดทำโดย Phichamon Kaewboot รหัสนักศึกษา 680610700
+        </footer>
       </SidebarInset>
     </SidebarProvider>
+    
+    
   );
 }
